@@ -9,6 +9,13 @@ from math import atan, sqrt, tan, pi
 (1,0),(0,1),(-1,0)
 """
 # points are in tuple form (x,y)
+
+def mag(a, b):
+    return sqrt((a[1]-b[1])**2+(a[0]-b[0])**2)
+
+def grad(a, b):
+    return (a[1]-b[1])/(a[0]-b[0])
+
 def finder(start, point, end):
     """
     start is the starting point
@@ -18,12 +25,12 @@ def finder(start, point, end):
     if point[0] == start[0]:
         m1 = None
     else:
-        m1 = (point[1]-start[1])/(point[0]-start[0])
+        m1 = grad(start, point)
     
     if end[0] == point[0]:
         m2 = None
     else:
-        m2 = (end[1]-point[1])/(end[0]-point[0])
+        m2 = grad(end, point)
 
     if m1 == m2:
         angle = 0
@@ -43,10 +50,10 @@ def finder(start, point, end):
         angle = pi - atan(abs((m1-m2)/(1+m1*m2)))
 
     if angle == 0:
-        length = sqrt((end[1]-start[1])**2+(end[0]-start[0])**2)
+        length = mag(start, end)
         curvature = 0
     else:
-        len = sqrt((point[1]-start[1])**2+(point[0]-start[0])**2)
+        len = mag(start, point)
         radius = len/tan(angle/2)
         curvature = 1/radius
         length = radius*angle
