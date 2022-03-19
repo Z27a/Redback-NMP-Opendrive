@@ -1,5 +1,4 @@
-import math
-
+from math import sqrt, acos, sin, cos, pi
 
 def arcStart(datapt):
     # datapoints could be [(1, 2), (3, 4), (5, 6), (7, 8)]
@@ -24,7 +23,7 @@ def getLen(coord1, coord2):
     # Calculates the distance between two points
     x1, y1 = coord1
     x2, y2 = coord2
-    return math.sqrt(abs(x2 - x1) ** 2 + abs(y2 - y1) ** 2)
+    return sqrt(abs(x2 - x1) ** 2 + abs(y2 - y1) ** 2)
 
 
 def calcData(prev, cur, next):
@@ -44,19 +43,18 @@ def calcData(prev, cur, next):
     line[1] = line[1] / lenBefore
 
     if line[1] < 0:
-        heading = math.acos(line[0] * -1)
-        heading += math.pi
+        heading = acos(line[0] * -1)
+        heading += pi
     else:
-        heading = math.acos(line[0])
+        heading = acos(line[0])
 
-    midx = cur[0] + math.cos(heading - math.pi) * minLen
-    midy = cur[1] + math.sin(heading - math.pi) * minLen
+    midx = cur[0] + cos(heading - pi) * minLen
+    midy = cur[1] + sin(heading - pi) * minLen
 
     return midx, midy, heading
 
 
-if __name__ == '__main__':
-    data = [(0, 0), (-1, 2), (5, 6), (7, 3)]
-    result = arcStart(data)
-    print(result)
-    print(len(result))
+# if __name__ == '__main__':
+#     data = [(0, 0), (-1, 2), (5, 6), (7, 3)]
+#     result = arcStart(data)
+#     print(result)
