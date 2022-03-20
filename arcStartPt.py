@@ -1,12 +1,16 @@
 from math import sqrt, acos, sin, cos, pi
 
-def arcStart(datapt):
-    # datapoints could be [(1, 2), (3, 4), (5, 6), (7, 8)]
-    # need to return x, y, hdg
-    # x-axis is right, y-axis is up.
-    # hdg is the angle in rad from the x-axis that the reference line is travelling in. Positive hdg points towards up??
 
-    # tuples of (x,y,hdg)
+def arcPos(datapt):
+    '''
+    x-axis is right, y-axis is up.
+    hdg is the angle in rad from the x-axis that the reference line is travelling in.
+    I'm assuming positive hdg goes anticlockwise from x-axis
+    :param datapt: list of x y coordinates [(1, 2), (3, 4), (5, 6), (7, 8)]
+    :return: [((startx, starty), (endx, endy), heading), ...]
+    '''
+
+    # tuples of ((startx, starty), (endx, endy), heading)
     arcPosArr = []
 
     # curve everything except the last point
@@ -27,34 +31,48 @@ def getLen(coord1, coord2):
 
 
 def calcData(prev, cur, next):
-    lenBefore = getLen(prev, cur)
-    lenAfter = getLen(cur, next)
+    '''
+    calculates arc position data
+    :param prev: previous coordinate
+    :param cur: current coord
+    :param next: next coord
+    :return: ((startx, starty), (endx, endy), heading)
+    '''
+    lenBef = getLen(prev, cur)
+    lenAft = getLen(cur, next)
 
-    minLen = min(lenBefore, lenAfter) / 2
+    minLen = min(lenBef, lenAft) / 2
 
     x1, y1 = prev
     x2, y2 = cur
+    x3, y3 = next
 
-    # line vector
-    line = [x2 - x1, y2 - y1]
+    # line vector between previous and current points
+    lineBef = [x2 - x1, y2 - y1]
+    # line vector between previous and current points
+    lineAft = [x3 - x2, y3 - y2]
 
     # normalise to unit vector
-    line[0] = line[0] / lenBefore
-    line[1] = line[1] / lenBefore
+    lineBef[0] = lineBef[0] / lenBef
+    lineBef[1] = lineBef[1] / lenBef
+    lineAft[0] = lineAft[0] / lenAft
+    lineAft[1] = lineAft[1] / lenAft
 
-    if line[1] < 0:
-        heading = acos(line[0] * -1)
+    if lineBef[1] < 0:
+        heading = acos(lineBef[0] * -1)
         heading += pi
     else:
-        heading = acos(line[0])
+        heading = acos(lineBef[0])
 
-    midx = cur[0] + cos(heading - pi) * minLen
-    midy = cur[1] + sin(heading - pi) * minLen
+    startx = cur[0] + cos(heading - pi) * minLen
+    starty = cur[1] + sin(heading - pi) * minLen
+    endx = cur[0] + lineAft[0] * minLen
+    endy = cur[1] + lineAft[1] * minLen
 
-    return midx, midy, heading
+    return (startx, starty), (endx, endy), heading
 
 
-# if __name__ == '__main__':
-#     data = [(0, 0), (-1, 2), (5, 6), (7, 3)]
-#     result = arcStart(data)
-#     print(result)
+if __name__ == '__main__':
+    data = [(0, 0), (-1, 2), (5, 6), (7, 3)]
+    result = arcPos(data)
+    print(result)
