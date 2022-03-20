@@ -16,6 +16,13 @@ def mag(a, b):
 def grad(a, b):
     return (a[1]-b[1])/(a[0]-b[0])
 
+def orient(a, b, c):
+    delta = (b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0])
+    if delta > 0:
+        return True
+    else:
+        return False
+
 def finder(start, point, end):
     """
     start is the starting point
@@ -58,4 +65,7 @@ def finder(start, point, end):
         curvature = 1/radius
         length = radius*angle
 
-    return (length, curvature)
+    if orient(start, point, end):
+        return (length, curvature)
+    else:
+        return (length, -curvature)
