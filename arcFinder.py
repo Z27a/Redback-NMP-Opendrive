@@ -1,4 +1,4 @@
-from math import atan, sqrt, tan, pi, acos
+from math import sqrt, tan, pi, acos
 
 """ Tests
 (0,0),(0,1),(1,1)
