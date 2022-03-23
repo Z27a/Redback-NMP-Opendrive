@@ -10,8 +10,6 @@ from math import sqrt, tan, pi, acos
 (11.05572809000084,24.47213595499958), (20,20), (20,10)
 """
 
-# points are in tuple form (x,y)
-
 def mag(a, b):
     return sqrt((a[1]-b[1])**2+(a[0]-b[0])**2)
 
