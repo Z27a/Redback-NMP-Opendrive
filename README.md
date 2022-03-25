@@ -16,7 +16,6 @@ Given any 3 points connected in series, the program will smooth out the turn in 
 ### Potential issues
 
 - The track currently has a set width of 4 metres. If the coordinates given are too small, it may cause
-the track will overlap on itself weirdly.
+the track to overlap on itself weirdly.
 
-- If the coordinates are sequenced in a way where reference lines are drawn will intersect, then the
-track will overlap on itself incorrectly.
+- If the coordinates are sequenced in a way where reference lines are drawn will intersect, then it will cause the track to overlap without making a proper intersection.
