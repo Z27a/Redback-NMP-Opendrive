@@ -44,6 +44,6 @@ def writeToOpenDriveFile(roads, totalLength, openDriveTemplate):
     tree.write("test.xodr", pretty_print=True)
 
 if __name__ == "__main__":
-    inputCoordinates = getInputCoordinates("input.json")
+    inputCoordinates = getInputCoordinates("input1.json")
     roads = generateRoads(inputCoordinates)
     writeToOpenDriveFile(roads[0], roads[1], "openDriveTemplate.xodr")

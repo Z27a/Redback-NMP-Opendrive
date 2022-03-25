@@ -1,0 +1,47 @@
+<OpenDRIVE>
+    <header revMajor="1" revMinor="7" name="" version="1.00" date="Mon Oct 28 14:02:13 2019" north="0.0000000000000000e+00" south="0.0000000000000000e+00" east="0.0000000000000000e+00" west="0.0000000000000000e+00">
+    </header>
+    <road rule="RHT" name="" length="99.75505495032729" id="1" junction="-1">
+        <link>
+        </link>
+        <planView>
+        <geometry s="0" x="15.0" y="0.0" hdg="3.141592653589793" length="23.561944901923454"><arc curvature="-0.06666666666666664"/></geometry><geometry s="23.561944901923454" x="0.0" y="15.0" hdg="1.5707963267948966" length="4.405189949791456"><line/></geometry><geometry s="27.96713485171491" x="6.487450107781052e-16" y="19.405189949791456" hdg="1.5707963267948966" length="5.050374368873104"><arc curvature="-0.5553881018188618"/></geometry><geometry s="33.01750922058801" x="3.5000000000000004" y="20.0" hdg="5.049063799771417" length="5.877819484180244"><line/></geometry><geometry s="38.895328704768254" x="5.441740163074079" y="14.452170962645482" hdg="5.049063799771417" length="6.760768612041858"><arc curvature="0.26516523869174413"/></geometry><geometry s="45.65609731681011" x="11.0" y="12.5" hdg="0.5585993153435623" length="0.4158279325069896"><line/></geometry><geometry s="46.071925249317104" x="11.35262138152387" y="12.720388363452418" hdg="0.5585993153435623" length="7.582250863767645"><arc curvature="-0.15547478215995217"/></geometry><geometry s="53.65417611308475" x="18.5" y="12.5" hdg="5.662935821196765" length="6.113117778736444"><arc curvature="0.2961728370362895"/></geometry><geometry s="59.7672938918212" x="23.59741169957248" y="13.993529248931196" hdg="1.1902899496825317" length="6.469166980747694"><line/></geometry><geometry s="66.2364608725689" x="26.0" y="20.0" hdg="1.1902899496825317" length="5.726978790103943"><arc curvature="-0.4821191727213146"/></geometry><geometry s="71.96343966267284" x="30.0" y="19.22967038573099" hdg="4.71238898038469" length="4.229670385730991"><line/></geometry><geometry s="76.19311004840384" x="30.0" y="15.0" hdg="4.71238898038469" length="23.561944901923454"><arc curvature="-0.06666666666666664"/></geometry></planView>
+        <lateralProfile>
+        </lateralProfile>
+        <lanes>
+            <laneSection s="0.0000000000000000e+00">
+                <left>
+                    <lane id="1" type="driving" level="false">
+                        <link>
+                        </link>
+                        <width sOffset="0" a="2" b="0" c="0" d="0"/>
+                    </lane>
+                </left>
+                <center>
+                    <lane id="0" type="driving" level="false">
+                        <link>
+                        </link>
+                        <roadMark sOffset="0.0000000000000000e+00" type="broken" weight="standard" color="standard" width="1.2000000000000000e-01" laneChange="both" height="1.9999999552965164e-02">
+                            <type name="broken" width="1.2000000000000000e-01">
+                                <line length="4.0000000000000000e+00" space="8.0000000000000000e+00" tOffset="0.0000000000000000e+00" sOffset="0.0000000000000000e+00" rule="caution" width="1.2000000000000000e-01"/>
+                            </type>
+                        </roadMark>
+                    </lane>
+                </center>
+                <right>
+                    <lane id="-1" type="driving" level="false">
+                        <link>
+                        </link>
+                        <width sOffset="0" a="2" b="0" c="0" d="0"/>
+                    </lane>
+                </right>
+            </laneSection>
+        </lanes>
+        <objects>
+        </objects>
+        <signals>
+        </signals>
+        <surface>
+        </surface>
+    </road>
+</OpenDRIVE>
