@@ -13,7 +13,9 @@ Given any 3 points connected in series, the program will smooth out the turn in 
 #### Generation of arc:
 ![Example](example.JPG)
 
-### Potential issues
+### Current problems
+
+- If 3 or more points in sequence are collinear, this will crash the generation of the track. 
 
 - The track currently has a set width of 4 metres. If the coordinates given are too small, it may cause
 the track to overlap on itself weirdly.
