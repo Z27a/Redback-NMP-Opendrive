@@ -58,12 +58,14 @@ def calcData(prev, cur, next):
     lineAft[0] = lineAft[0] / lenAft
     lineAft[1] = lineAft[1] / lenAft
 
+    # calculate heading
     if lineBef[1] < 0:
         heading = acos(lineBef[0] * -1)
         heading += pi
     else:
         heading = acos(lineBef[0])
 
+    # calculate start and end points 
     startx = cur[0] + cos(heading - pi) * minLen
     starty = cur[1] + sin(heading - pi) * minLen
     endx = cur[0] + lineAft[0] * minLen
