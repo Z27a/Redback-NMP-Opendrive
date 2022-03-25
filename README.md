@@ -3,6 +3,8 @@
 
 Input format: JSON file containing a list `data` of (x,y) coordinates such that for any `i`, 0 <= i < len(list), `data[i]` and `data[i+1]` are going to be connected by this program. 
 
+Run `python3 main.py` to generate the output from "input1.json".
+
 Output format: Opendrive .xodr file
 
 #### How it works 
