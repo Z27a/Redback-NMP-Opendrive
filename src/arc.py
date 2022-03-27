@@ -5,7 +5,7 @@ class Arc:
     all = []
 
     def __init__(self, xStart=0.0, yStart=0.0, xEnd=0.0, yEnd=0.0, hdg=0.0, length=0.0, curvature=0.0,
-                 xOriginalPoint=0.0, yOriginalPoint=0.0):
+                 xOriginalPoint=0.0, yOriginalPoint=0.0, s=0.0):
         self.xStart = xStart
         self.yStart = yStart
         self.xEnd = xEnd
@@ -15,6 +15,7 @@ class Arc:
         self.curvature = curvature
         self.xOriginalPoint = xOriginalPoint
         self.yOriginalPoint = yOriginalPoint
+        self.s = s
         self.type = "arc"
 
         Arc.all.append(self)

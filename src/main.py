@@ -39,13 +39,13 @@ def writeToOpenDriveFile(roads, totalLength, openDriveTemplate):
     roadNode = root.xpath("/OpenDRIVE/road")[0]
     planViewNode = root.xpath("/OpenDRIVE/road/planView")[0]
     for geometry in roads:
-        if geometry["type"] == "straight":
+        if geometry.type == "straight":
             planViewNode.append(
-                createStraightNode(geometry['s'], geometry['x'], geometry['y'], geometry['hdg'], geometry['length']))
-        elif geometry["type"] == "arc":
+                createStraightNode(geometry.s, geometry.xStart, geometry.yStart, geometry.hdg, geometry.length))
+        elif geometry.type == "arc":
             planViewNode.append(
-                createArcNode(geometry['s'], geometry['x'], geometry['y'], geometry['hdg'], geometry['length'],
-                              geometry["curvature"]))
+                createArcNode(geometry.s, geometry.xStart, geometry.yStart, geometry.hdg, geometry.length,
+                              geometry.curvature))
 
     roadNode.set("length", str(totalLength))
     tree.write("test.xodr", pretty_print=True)
