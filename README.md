@@ -1,6 +1,8 @@
 # Opendrive Track generator 
 ### Converts a list of (x,y) coordinates into a track built with arcs and lines. 
 
+**For the version using classes, objects and OOP elements, see the oop-rewrite branch**
+
 Input format: JSON file containing a list `data` of (x,y) coordinates such that for any `i`, 0 <= i < len(list), `data[i]` and `data[i+1]` are going to be connected by this program. 
 
 Run `python3 main.py` to generate the output from "input1.json".
