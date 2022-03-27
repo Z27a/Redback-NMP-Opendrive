@@ -37,7 +37,10 @@ def generateRoads(datapoints):
     # determine if straight lines are needed and add to road list
     for i in range(lastIndex):
         # add arc
-        roads.append(generateArc(s, arcStarts[i][0], arcStarts[i][1], arcHeadings[i], arcLengthCurvature[i][0], arcLengthCurvature[i][1]))
+        if arcLengthCurvature[i][1] != 0:
+            roads.append(generateArc(s, arcStarts[i][0], arcStarts[i][1], arcHeadings[i], arcLengthCurvature[i][0], arcLengthCurvature[i][1]))
+        else:
+            roads.append(generateStraight(s, arcStarts[i][0], arcStarts[i][1], arcHeadings[i], arcLengthCurvature[i][0]))
         s += arcLengthCurvature[i][0]
         # add straight line if needed
         if arcEnds[i] != arcStarts[i + 1]:
