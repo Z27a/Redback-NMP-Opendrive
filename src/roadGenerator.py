@@ -3,24 +3,6 @@ from line import Line
 
 
 def generateRoads(datapoints):
-    # initialise road points
-    # for straight  {
-    #               "type": "straight", 
-    #               "s": s,
-    #               "x": xStart, 
-    #               "y": yStart, 
-    #               "hdg": heading, 
-    #               "length": length
-    #               }
-    # for arc       {
-    #               "type": "arc",
-    #               "s": s, 
-    #               "x": xStart, 
-    #               "y": yStart, 
-    #               "hdg": heading, 
-    #               "length": length
-    #               "curvature"
-    #               }
     roads = []
 
     # Create arcs

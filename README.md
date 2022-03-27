@@ -14,6 +14,13 @@ Given any 3 points connected in series, the program will smooth out the turn in 
 
 ![Example](example.JPG)
 
+#### Generated tracks:
+Using data from https://github.com/TUMFTM/racetrack-database 
+
+![track1](track1.png)
+
+![track2](track2.png)
+
 ### Current problems
 
 - The track currently has a set width of 4 metres. If the coordinates given are too small, it may cause
