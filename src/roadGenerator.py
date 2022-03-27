@@ -49,7 +49,10 @@ def generateRoads(datapoints):
             s += straightLength
     
     # last arc/straight line to add
-    roads.append(generateArc(s, arcStarts[lastIndex][0], arcStarts[lastIndex][1], arcHeadings[lastIndex], arcLengthCurvature[lastIndex][0], arcLengthCurvature[lastIndex][1]))
+    if arcLengthCurvature[lastIndex][1] != 0:
+        roads.append(generateArc(s, arcStarts[lastIndex][0], arcStarts[lastIndex][1], arcHeadings[lastIndex], arcLengthCurvature[lastIndex][0], arcLengthCurvature[lastIndex][1]))
+    else:
+        roads.append(generateStraight(s, arcStarts[lastIndex][0], arcStarts[lastIndex][1], arcHeadings[lastIndex], arcLengthCurvature[lastIndex][0]))
     s += arcLengthCurvature[lastIndex][0]
     if (arcEnds[lastIndex] != arcStarts[0]):
         straightLength = getLen(arcEnds[lastIndex], arcStarts[0])
