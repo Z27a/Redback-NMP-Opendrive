@@ -1,3 +1,5 @@
+####### DEPRECATED ########
+
 from math import sqrt, tan, pi, acos
 
 """ Tests

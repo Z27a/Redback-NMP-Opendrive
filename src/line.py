@@ -1,2 +1,35 @@
+from math import sqrt
+
 class Line:
-    pass
+    all = []
+
+    def __init__(self, xStart=0.0, yStart=0.0, xEnd=0.0, yEnd=0.0, hdg=0.0, length=0.0):
+        self.xStart = xStart
+        self.yStart = yStart
+        self.xEnd = xEnd
+        self.yEnd = yEnd
+        self.hdg = hdg
+        self.length = length
+
+        Line.all.append(self)
+
+    @classmethod
+    def createLine(cls, xStart, yStart, xEnd, yEnd, hdg):
+        length = cls.getLen([xStart, yStart], [xEnd, yEnd])
+
+        return Line(
+            xStart=xStart,
+            yStart=yStart,
+            xEnd=xEnd,
+            yEnd=yEnd,
+            hdg=hdg,
+            length=length
+        )
+
+    @classmethod
+    def getLen(cls, coord1, coord2):
+        # Calculates the distance between two points
+        x1, y1 = coord1
+        x2, y2 = coord2
+        return sqrt(abs(x2 - x1) ** 2 + abs(y2 - y1) ** 2)
+

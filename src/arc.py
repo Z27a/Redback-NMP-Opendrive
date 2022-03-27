@@ -1,5 +1,4 @@
 from math import sqrt, acos, sin, cos, tan, pi
-from main import getLen
 
 
 class Arc:
@@ -39,8 +38,8 @@ class Arc:
         :param cur: current coord
         :param next: next coord
         '''
-        lenBef = getLen(cls, prev, cur)
-        lenAft = getLen(cls, cur, next)
+        lenBef = cls.getLen(prev, cur)
+        lenAft = cls.getLen(cur, next)
 
         minLen = min(lenBef, lenAft) / 2
 
@@ -111,3 +110,10 @@ class Arc:
                 arc.curvature = curvature
             else:
                 arc.curvature = -curvature
+
+    @classmethod
+    def getLen(cls, coord1, coord2):
+        # Calculates the distance between two points
+        x1, y1 = coord1
+        x2, y2 = coord2
+        return sqrt(abs(x2 - x1) ** 2 + abs(y2 - y1) ** 2)
