@@ -1,8 +1,8 @@
-from arcStartPt import arcPos, getLen
-from arcFinder import finder
+from arc import Arc
+from line import Line
+
 
 def generateRoads(datapoints):
-    
     # initialise road points
     # for straight  {
     #               "type": "straight", 
@@ -23,62 +23,43 @@ def generateRoads(datapoints):
     #               }
     roads = []
 
-    # get arcs
-    arcPositionsHeading = arcPos(datapoints)
-    arcStarts = [(element[0][0], element[0][1]) for element in arcPositionsHeading] 
-    arcEnds = [(element[1][0], element[1][1]) for element in arcPositionsHeading] 
-    arcHeadings = [element[2] for element in arcPositionsHeading]
-
-    # generate arc length and curvature
-    arcLengthCurvature = list(map(finder, arcStarts, datapoints, arcEnds))
+    # Create arcs
+    Arc.instantiateAllArcs(datapoints)
 
     s = 0
-    lastIndex = len(datapoints) - 1
-    # determine if straight lines are needed and add to road list
+    lastIndex = len(Arc.all) - 1
     for i in range(lastIndex):
+        arc = Arc.all[i]
         # add arc
-        if arcLengthCurvature[i][1] != 0:
-            roads.append(generateArc(s, arcStarts[i][0], arcStarts[i][1], arcHeadings[i], arcLengthCurvature[i][0], arcLengthCurvature[i][1]))
+        if arc.curvature != 0:
+            arc.s = s
+            roads.append(arc)
         else:
-            roads.append(generateStraight(s, arcStarts[i][0], arcStarts[i][1], arcHeadings[i], arcLengthCurvature[i][0]))
-        s += arcLengthCurvature[i][0]
+            straightLine = Line.createLine(arc.xStart, arc.yStart, arc.hdg, arc.length, s)
+            roads.append(straightLine)
+        s += arc.length
+
         # add straight line if needed
-        if arcEnds[i] != arcStarts[i + 1]:
-            straightLength = getLen(arcEnds[i], arcStarts[i + 1])
-            roads.append(generateStraight(s, arcEnds[i][0], arcEnds[i][1], arcHeadings[i + 1], straightLength))
-            s += straightLength
-    
+        nextArc = Arc.all[i + 1]
+        if arc.xEnd != nextArc.xStart or arc.yEnd != nextArc.yStart:
+            straightLine = Line.createLine(arc.xEnd, arc.yEnd, nextArc.hdg, 0, s, nextArc.xStart, nextArc.yStart)
+            roads.append(straightLine)
+            s += straightLine.length
+
     # last arc/straight line to add
-    if arcLengthCurvature[lastIndex][1] != 0:
-        roads.append(generateArc(s, arcStarts[lastIndex][0], arcStarts[lastIndex][1], arcHeadings[lastIndex], arcLengthCurvature[lastIndex][0], arcLengthCurvature[lastIndex][1]))
+    arc = Arc.all[lastIndex]
+    if arc.curvature != 0:
+        arc.s = s
+        roads.append(arc)
     else:
-        roads.append(generateStraight(s, arcStarts[lastIndex][0], arcStarts[lastIndex][1], arcHeadings[lastIndex], arcLengthCurvature[lastIndex][0]))
-    s += arcLengthCurvature[lastIndex][0]
-    if (arcEnds[lastIndex] != arcStarts[0]):
-        straightLength = getLen(arcEnds[lastIndex], arcStarts[0])
-        roads.append(generateStraight(s, arcEnds[lastIndex][0], arcEnds[lastIndex][1], arcHeadings[0], straightLength))
-        s += straightLength
+        straightLine = Line.createLine(arc.xStart, arc.yStart, arc.hdg, arc.length, s)
+        roads.append(straightLine)
+    s += arc.length
+
+    nextArc = Arc.all[0]
+    if arc.xEnd != nextArc.xStart or arc.yEnd != nextArc.yStart:
+        straightLine = Line.createLine(arc.xEnd, arc.yEnd, nextArc.hdg, 0, s, nextArc.xStart, nextArc.yStart)
+        roads.append(straightLine)
+        s += straightLine.length
 
     return roads, s
-            
-
-def generateStraight(s, x, y, hdg, length):
-    return {
-        "type": "straight",
-        "s": s,
-        "x": x,
-        "y": y,
-        "hdg": hdg,
-        "length": length
-    }
-
-def generateArc(s, x, y, hdg, length, curvature):
-    return {
-        "type": "arc",
-        "s": s,
-        "x": x,
-        "y": y,
-        "hdg": hdg,
-        "length": length,
-        "curvature": curvature
-    }
