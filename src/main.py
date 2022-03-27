@@ -1,6 +1,18 @@
 from lxml import etree
 from roadGenerator import generateRoads
 import json
+from math import sqrt
+
+
+def getLen(self, coord1, coord2):
+    # Calculates the distance between two points
+    x1, y1 = coord1
+    x2, y2 = coord2
+    return sqrt(abs(x2 - x1) ** 2 + abs(y2 - y1) ** 2)
+
+
+
+
 
 def getInputCoordinates(filename: str):
     '''
